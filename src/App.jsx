@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter,Route,Routes, HashRouter } from 'react-router-dom'
+import { Route,Routes, HashRouter } from 'react-router-dom'
 import Email from './components/Email'
 import './App.css'
 import Success from './components/Success'
