@@ -22,7 +22,7 @@ function Success() {
                 <p className='text-[12px] mt-5 font-roboto font-medium'>A conformation email has been sent to <span className='font-bold text-gray-900'>{userEmail}</span>.Please open it and click the button inside to confirm your subscription</p>
                 <button 
                 onClick={handleSubmit}
-                className='w-full  text-white px-3 py-2 bg-[#242742] transition ease-in-out duration-300 rounded-xl hover:bg-gradient-to-r from-[#ff5fd4] hover:to-[#ff5100] hover:shadow-2xl hover:shadow-pink-500 my-5'>Dismiss Message</button>
+                className='w-full  text-white px-3 py-3 bg-[#242742] transition ease-in-out duration-300 rounded-lg hover:bg-gradient-to-r from-[#ff5fd4] hover:to-[#ff5100] hover:shadow-2xl hover:shadow-pink-500 my-5'>Dismiss Message</button>
             </div>
         </div>
 

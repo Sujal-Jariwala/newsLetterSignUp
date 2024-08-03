@@ -1,18 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import iconList from '../assets/icon-list.svg';
-import Illustration from '../assets/illustration-sign-up-desktop.svg';
-import UserEmailContext from '../context/UserEmailContext'
+import desktopIllustration from '../assets/illustration-sign-up-desktop.svg';
+import mobileIllustration from '../assets/illustration-sign-up-mobile.svg';
+import UserEmailContext from '../context/UserEmailContext';
 
 function Email() {
   const [email, setEmail] = useState('');
   const [errorMsg, setErrorMsg] = useState(false);
+  const [imageSrc, setImageSrc] = useState(desktopIllustration);
   const navigate = useNavigate();
   const validEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  const {setUserEmail} = useContext(UserEmailContext);
+  const { setUserEmail } = useContext(UserEmailContext);
 
   const handleSubmit = () => {
-    setUserEmail(email)
+    setUserEmail(email);
     if (!email || !validEmail.test(email)) {
       setErrorMsg(true);
     } else {
@@ -29,10 +31,27 @@ function Email() {
     }
   };
 
+  const updateImageSrc = () => {
+    if (window.innerWidth < 768) {
+      setImageSrc(mobileIllustration);
+    } else {
+      setImageSrc(desktopIllustration);
+    }
+  };
+
+  useEffect(() => {
+    updateImageSrc();
+    window.addEventListener('resize', updateImageSrc);
+
+    return () => {
+      window.removeEventListener('resize', updateImageSrc);
+    };
+  }, []);
+
   return (
-    <div className='flex justify-center items-center max-md:h-auto min-h-screen bg-gray-800'>
-      <div className='flex bg-white rounded-3xl overflow-hidden max-w-4xl  max-md:flex-col-reverse max-md:w-[90%] px-8 py-4 max-md:p-0 max-md:justify-center max-md:items-center max-md:h-full'>
-        <div className='flex-1 pr-6 ml-10 max-md:m-0 font-roboto'>
+    <div className='flex justify-center items-center max-md:h-auto min-h-screen bg-gray-800 font-roboto'>
+      <div className='flex bg-white rounded-3xl overflow-hidden max-w-4xl max-md:flex-col-reverse max-md:w-[90%] px-8 py-4 max-md:p-0 max-md:justify-center max-md:items-center max-md:h-full'>
+        <div className='flex-1 pr-6 ml-10 max-md:m-0'>
           <h1 className='text-5xl font-extrabold mb-6 mt-14 text-[#242742] max-md:font-[30px]'>Stay updated!</h1>
           <p className='mb-6'>Join 60,000+ product managers receiving monthly updates on:</p>
           <div className='space-y-4 mb-8'>
@@ -50,12 +69,14 @@ function Email() {
             </div>
           </div>
           <div className='mb-4'>
-            <label htmlFor="email" className='block text-sm font-semibold mb-2'>Email Address</label>
-            {errorMsg && (
-              <span className='text-tomato text-[12px] text-end'>
-                Valid Email required
-              </span>
-            )}
+            <div className='flex justify-between items-center'>
+              <label htmlFor="email" className='block text-sm font-semibold mb-2'>Email Address</label>
+              {errorMsg && (
+                <span className='text-tomato text-[12px]'>
+                  Valid Email required
+                </span>
+              )}
+            </div>
             <input
               onChange={handleEmailChange}
               value={email}
@@ -73,7 +94,7 @@ function Email() {
           </button>
         </div>
         <div className='flex-1 rounded-xl overflow-hidden ml-11 max-md:m-0 max-md:w-full max-md:justify-center max-md:items-center max-md:align-middle'>
-          <img src={Illustration} alt="Illustration" className='object-cover max-w-screen max-md:w-full' />
+          <img src={imageSrc} alt="Illustration" className='object-cover max-w-screen max-md:w-full' />
         </div>
       </div>
     </div>
@@ -81,3 +102,4 @@ function Email() {
 }
 
 export default Email;
+  
