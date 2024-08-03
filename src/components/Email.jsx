@@ -50,7 +50,7 @@ function Email() {
 
   return (
     <div className='flex justify-center items-center max-md:h-auto min-h-screen bg-gray-800 font-roboto'>
-      <div className='flex bg-white rounded-3xl overflow-hidden max-w-4xl max-md:flex-col-reverse max-md:w-[90%] px-8 py-4 max-md:p-0 max-md:justify-center max-md:items-center max-md:h-full'>
+      <div className='flex bg-white rounded-3xl overflow-hidden max-w-4xl max-md:flex-col-reverse max-md:w-[90%] px-8 py-4 max-md:p-0 max-md:justify-center max-md:items-center max-md:h-full font-roboto'>
         <div className='flex-1 pr-6 ml-10 max-md:m-0'>
           <h1 className='text-5xl font-extrabold mb-6 mt-14 text-[#242742] max-md:font-[30px]'>Stay updated!</h1>
           <p className='mb-6'>Join 60,000+ product managers receiving monthly updates on:</p>
@@ -72,8 +72,8 @@ function Email() {
             <div className='flex justify-between items-center'>
               <label htmlFor="email" className='block text-sm font-semibold mb-2'>Email Address</label>
               {errorMsg && (
-                <span className='text-tomato text-[12px]'>
-                  Valid Email required
+                <span className='text-tomato text-sm font-semibold font-roboto'>
+                  Valid email required
                 </span>
               )}
             </div>
@@ -102,4 +102,3 @@ function Email() {
 }
 
 export default Email;
-  
